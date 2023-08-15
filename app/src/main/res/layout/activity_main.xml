@@ -13,13 +13,19 @@
         android:id="@+id/btnInsertRecord"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Insert Record" />
+        android:text="Activity to insert record" />
 
     <Button
         android:id="@+id/btnGetRecord"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Get Records" />
+        android:text="Activity to retrieve records (TextView)" />
+
+    <Button
+        android:id="@+id/btnGetRecord2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Activity to retrieve records (ListView)" />
 
 
 </LinearLayout>
