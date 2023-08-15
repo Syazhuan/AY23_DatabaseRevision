@@ -35,22 +35,24 @@ public class RetrieveActivityListView extends AppCompatActivity {
             public void onClick(View v) {
                 // Create the DBHelper object, passing in the activity's Context
                 DBHelper dbHelper = new DBHelper(RetrieveActivityListView.this);
+
+                // Assuming your DBHelper class has a method to retrieve notes from the database
+                ArrayList<Note> retrievedNotes = dbHelper.getNotesInObjects();
+
+                // Clear the ArrayList and add the retrieved notes
+                al.clear();
+                al.addAll(retrievedNotes);
+
+                // Notify the ArrayAdapter that the data has changed
+                aa.notifyDataSetChanged();
+
+                // Close the database connection
+                dbHelper.close();
+
+                // Register ListView for context menu
+                registerForContextMenu(lv);
+
             }
         });
-        // Assuming your DBHelper class has a method to retrieve notes from the database
-        ArrayList<Note> retrievedNotes = DBHelper.getNotesInObjects();
-
-        // Clear the ArrayList and add the retrieved notes
-        al.clear();
-        al.addAll(retrievedNotes);
-
-        // Notify the ArrayAdapter that the data has changed
-        aa.notifyDataSetChanged();
-
-        // Close the database connection
-        DBHelper.close();
-
-// Register ListView for context menu
-        registerForContextMenu(lv);
     }
 }

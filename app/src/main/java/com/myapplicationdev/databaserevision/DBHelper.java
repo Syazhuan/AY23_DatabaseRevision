@@ -94,7 +94,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 //data retrieval in object
                 int id = cursor.getInt(0);
                 String noteContent = cursor.getString(1);
-                int priority = cursor.getInt(2); // Corrected index for COLUMN_PRIORITY
+                String priority = cursor.getString(2); // Corrected index for COLUMN_PRIORITY
 
                 Note note = new Note(id, noteContent, priority); // Corrected constructor call
                 notes.add(note);

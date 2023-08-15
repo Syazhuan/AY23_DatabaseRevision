@@ -4,7 +4,7 @@ public class Note {
     private int id;
     private String content;
 
-    public Note(int id, String content, int priority) {
+    public Note(int id, String content, String priority) {
         this.id = id;
         this.content = content;
         this.priority = priority;
