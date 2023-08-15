@@ -7,6 +7,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Movie;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -107,10 +108,18 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //Edit?
-    public int editNote(int id) {
-
-
+    public int editNotes(Note data){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_CONTENT, data.getContent());
+        values.put(COLUMN_PRIORITY, data.getPriority());
+        String condition = COLUMN_ID + "= ?";
+        String[] args = {String.valueOf(data.getId())};
+        int result = db.update(TABLE_NOTE, values, condition, args);
+        db.close();
+        return result;
     }
+
     //Delete?
     public int deleteNote(int id){
         SQLiteDatabase db = this.getWritableDatabase();

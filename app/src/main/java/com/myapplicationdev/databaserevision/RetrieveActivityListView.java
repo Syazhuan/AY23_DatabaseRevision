@@ -38,7 +38,7 @@ public class RetrieveActivityListView extends AppCompatActivity {
             }
         });
         // Assuming your DBHelper class has a method to retrieve notes from the database
-        ArrayList<Note> retrievedNotes = DBHelper.getAllNotes();
+        ArrayList<Note> retrievedNotes = DBHelper.getNotesInObjects();
 
         // Clear the ArrayList and add the retrieved notes
         al.clear();
