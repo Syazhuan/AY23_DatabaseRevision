@@ -11,6 +11,8 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import kotlinx.coroutines.scheduling.Task;
+
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VER = 1;
@@ -64,6 +66,8 @@ public class DBHelper extends SQLiteOpenHelper {
             do {
                 //data retrieval in String
                 //tasks.add(cursor.getString(0));
+                String description = cursor.getString(0);
+                tasks.add(description);
             } while (cursor.moveToNext());
         }
 
@@ -87,7 +91,12 @@ public class DBHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 //data retrieval in object
+                int id = cursor.getInt(0);
+                String noteContent = cursor.getString(1);
+                int priority = cursor.getInt(2); // Corrected index for COLUMN_PRIORITY
 
+                Note note = new Note(id, noteContent, priority); // Corrected constructor call
+                notes.add(note);
                 //notes.add(obj);
             } while (cursor.moveToNext());
         }
@@ -98,7 +107,19 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //Edit?
+    public int editNote(int id) {
+
+
+    }
     //Delete?
+    public int deleteNote(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String condition = COLUMN_ID + "= ?";
+        String[] args = {String.valueOf(id)};
+        int result = db.delete(TABLE_NOTE, condition, args);
+        db.close();
+        return result;
+    }
 
 }
 
